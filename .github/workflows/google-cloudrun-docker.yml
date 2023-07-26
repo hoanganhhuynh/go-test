@@ -53,6 +53,10 @@ env:
   # GAR_LOCATION: us-central1 # TODO: update Artifact Registry location
   SERVICE_NAME: first-app # TODO: update Cloud Run service name
   # REGION: us-central1 # TODO: update Cloud Run service region
+  IMAGE_NAME: go-image
+  IMAGE_TAG: latest
+  REGION: us-central1
+  ARTIFACT_REGISTRY: gcr.io
   USERNAME: deployment-account@imposing-ratio-393502.iam.gserviceaccount.com
 
 jobs:
@@ -82,18 +86,24 @@ jobs:
       #     project_id: ${{ env.PROJECT_ID }}
       #     export_default_credentials: true
 
-      - name: Docker Compose Build
+      - name: Build and push Docker image
         run: |
+          # Build the Docker image from the Docker Compose file
           docker-compose build
 
-      - name: Docker Push
-        run: |
-          docker-compose push
+          # Tag the image with the Artifact Registry URL
+          docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${ARTIFACT_REGISTRY}/${PROJECT_ID}/${IMAGE_NAME}:${IMAGE_TAG}
+
+          # Authenticate with Artifact Registry
+          gcloud auth configure-docker ${ARTIFACT_REGISTRY}
+
+          # Push the Docker image to Artifact Registry
+          docker push ${ARTIFACT_REGISTRY}/${PROJECT_ID}/${IMAGE_NAME}:${IMAGE_TAG}
 
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v1
         with:
-          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}
+          image: ${ARTIFACT_REGISTRY}/${PROJECT_ID}/${IMAGE_NAME}:${IMAGE_TAG}
           service: ${{ env.SERVICE_NAME }}
           region: us-central1
           platform: managed
