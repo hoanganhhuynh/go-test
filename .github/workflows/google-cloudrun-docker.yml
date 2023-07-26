@@ -53,7 +53,7 @@ env:
   GAR_LOCATION: us-central1 # TODO: update Artifact Registry location
   SERVICE: first-app # TODO: update Cloud Run service name
   REGION: us-central1 # TODO: update Cloud Run service region
-  USERNAME: oauth2accesstoken
+  USERNAME: 1067406468283-compute@developer.gserviceaccount.com
 
 jobs:
   deploy:
