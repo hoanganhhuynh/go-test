@@ -11,7 +11,7 @@ services:
     ports:
       - "8088:8080"
     working_dir: /opt/app
-    command: go run main.go
+    command: go run src/main.go
 
   db:
     image: postgres:14.1-alpine
