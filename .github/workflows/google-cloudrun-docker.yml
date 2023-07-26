@@ -53,7 +53,7 @@ env:
   # GAR_LOCATION: us-central1 # TODO: update Artifact Registry location
   SERVICE_NAME: first-app # TODO: update Cloud Run service name
   # REGION: us-central1 # TODO: update Cloud Run service region
-  # USERNAME: deployment-account@imposing-ratio-393502.iam.gserviceaccount.com
+  USERNAME: deployment-account@imposing-ratio-393502.iam.gserviceaccount.com
 
 jobs:
   deploy:
@@ -81,6 +81,10 @@ jobs:
       - name: Docker Push
         run: |
           docker-compose push
+
+      - name: Authen
+      - run : |
+          gcloud config set account ${{ env.USERNAME }}
 
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v1
