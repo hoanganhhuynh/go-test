@@ -93,7 +93,7 @@ jobs:
       #     password: '${{ steps.auth.outputs.access_token }}'
       #     registry: '${{ env.GAR_LOCATION }}-docker.pkg.dev'
       - name: Build Container
-        run : docker-compose -f src/docker-compose.yml up -d
+        run : docker-compose -f ../src/docker-compose.yml up -d
 
       - name: Build and Push Container
         run: 
