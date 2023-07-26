@@ -72,7 +72,8 @@ jobs:
         with:
           project_id: ${{ env.PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-          export_default_credentials: true
+          service_account: ${{ secrets.USERNAME }}
+
       
       # - name: Authenticate with Google Cloud SDK
       #   uses: google-github-actions/auth@v1
