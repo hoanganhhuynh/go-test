@@ -49,11 +49,11 @@ on:
     branches: [ "main" ]
 
 env:
-  PROJECT_ID: 'imposing-ratio-393502' # TODO: update Google Cloud project id
-  GAR_LOCATION: 'us-central1' # TODO: update Artifact Registry location
-  SERVICE: 'first-app' # TODO: update Cloud Run service name
-  REGION: 'us-central1' # TODO: update Cloud Run service region
-  USERNAME: 'oauth2accesstoken'
+  PROJECT_ID: imposing-ratio-393502 # TODO: update Google Cloud project id
+  GAR_LOCATION: us-central1 # TODO: update Artifact Registry location
+  SERVICE: first-app # TODO: update Cloud Run service name
+  REGION: us-central1 # TODO: update Cloud Run service region
+  USERNAME: oauth2accesstoken
 
 jobs:
   deploy:
