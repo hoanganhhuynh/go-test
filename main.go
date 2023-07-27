@@ -21,7 +21,7 @@ func main(){
 	userHandler := handlers.NewUserHandler(db)
 	fmt.Println("Create handdler")
 	r.HandleFunc("/", func (writer http.ResponseWriter, request *http.Request){
-		fmt.Fprintf(writer, "Hello World!")
+		fmt.Fprintf(writer, "Hello World! A hi hi update")
 	}).Methods(http.MethodGet)
 	r.HandleFunc("/api/people/{id}", userHandler.GetById).Methods(http.MethodGet)
 	r.HandleFunc("/api/people/create", userHandler.Create).Methods(http.MethodPost)
