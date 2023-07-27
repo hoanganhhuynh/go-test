@@ -3,15 +3,17 @@ version: '3.8'
 services:
 
   sdk:
-    image: golang:1.20.5-alpine3.18
+    # image: golang:1.20.5-alpine3.18
+    build:
+      context: . # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: Dockerfile
+    image: go-image
     depends_on:
       - db
     volumes:
-      - .:/opt/app
+      - .:/app/opt
     ports:
       - "8088:8080"
-    working_dir: /opt/app
-    command: go run src/main.go
 
   db:
     image: postgres:14.1-alpine
@@ -23,7 +25,7 @@ services:
     ports:
       - "6432:5432"
     volumes:
-      - ./.output/:/opt/db/
+      - ./.output/:/app/opt/db/
       
 
   # bash:
