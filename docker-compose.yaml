@@ -7,7 +7,7 @@ services:
     build:
       context: . # Use an image built from the specified dockerfile in the current directory.
       dockerfile: Dockerfile
-    image: go-image
+    image: go-test/first-app
     depends_on:
       - db
     volumes:
