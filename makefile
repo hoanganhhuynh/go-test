@@ -1,11 +1,11 @@
 BUILD_SCRIPTS_PATH	:= ./build/scripts
 
 build:
-	${BUILD_SCRIPTS_PATH}/build.sh
+	go build .
 .PHONY: build
 
 run:
-	docker-compose up
+	docker-compose up sdk
 .PHONY: run
 
 create-db:
