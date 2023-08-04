@@ -15,7 +15,7 @@ func main(){
 	fmt.Println("New router")
 	db, errDb:= database.SetupDb()
 	if(errDb != nil) {
-		fmt.Println("Can not connect to db: ", errDb)
+		fmt.Println("Can not connect to db")
 	}
 	
 	userHandler := handlers.NewUserHandler(db)

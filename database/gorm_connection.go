@@ -18,9 +18,10 @@ func SetupDb() (*gorm.DB, error) {
 
 	host := os.Getenv("HOST")
 	dbName := os.Getenv("DB_NAME")
-	userName := os.Getenv("PS_SERNAME")
+	userName := os.Getenv("PS_USERNAME")
 	password := os.Getenv("PS_PASSWORD")
-	dns := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, userName, password, dbName)
+	port := os.Getenv("PS_PORT")
+	dns := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", host, port, userName, password, dbName)
 	// dns := "host=host.docker.internal user=postgres password=postgres port=6432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dns))
 
