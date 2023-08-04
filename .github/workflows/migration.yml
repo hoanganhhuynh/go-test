@@ -1,0 +1,17 @@
+name: Migration
+on: 
+  workflow_dispatch:
+jobs:
+  migration:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create-db
+        run: 
+          make create-db
+      - name: Migrate-db
+        run: 
+          make migrate-db
