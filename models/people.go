@@ -1,6 +1,13 @@
 package models
 
+import(
+	"time"
+)
+
 type People struct {
 	BaseModel
-	Name string
+	FirstName string
+	LastName string
+	Country string
+	Dob time.Time
 }

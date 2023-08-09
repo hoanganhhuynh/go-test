@@ -26,6 +26,7 @@ func main(){
 	r.HandleFunc("/api/people/{id}", userHandler.GetById).Methods(http.MethodGet)
 	r.HandleFunc("/api/people/create", userHandler.Create).Methods(http.MethodPost)
 	r.HandleFunc("/api/people", userHandler.GetAll).Methods(http.MethodGet)
+	r.HandleFunc("/api/people", userHandler.Update).Methods(http.MethodPut)
 	fmt.Println("Create endpoints")
 	err := http.ListenAndServe(":8088", r)
 	fmt.Println("Serve")
