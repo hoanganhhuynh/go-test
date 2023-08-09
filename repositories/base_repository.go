@@ -9,7 +9,8 @@ import (
 type IBaseRepository [T any] interface {
 	Create (ctx context.Context, t T) (T, error)
 	GetById (ctx context.Context, id int64) (T, error)
-	GetAll () ([]T, error)
+	GetAll (ctx context.Context) ([]T, error)
+	Update (ctx context.Context, t T) (T, error)
 }
 
 type BaseRepository [T any] struct {
@@ -23,14 +24,19 @@ func (baseRepository BaseRepository[T]) GetById (ctx context.Context, id int64) 
   	return t, err
 }
 
-func (baseRepository BaseRepository[T]) GetAll () ([]T, error) {
+func (baseRepository BaseRepository[T]) GetAll (ctx context.Context) ([]T, error) {
 	var t []T
 	time.Sleep(3 * time.Second)
-	err := baseRepository.Db.Find(&t).Error
+	err := baseRepository.Db.WithContext(ctx).Find(&t).Error
   	return t, err
 }
 
 func (baseRepository BaseRepository [T]) Create (ctx context.Context, t T) (T, error) {
 	err := baseRepository.Db.WithContext(ctx).Create(&t).Error
+	return t, err
+}
+
+func (baseRepository BaseRepository [T]) Update (ctx context.Context, t T) (T, error) {
+	err := baseRepository.Db.WithContext(ctx).Save(&t).Error
 	return t, err
 }
