@@ -26,9 +26,6 @@ func SetupDb() (*gorm.DB, error) {
 	db, err := gorm.Open(postgres.Open(dns))
 
 	if err== nil {
-		if rs := db.Exec("SELECT 'CREATE DATABASE DemoDb' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'DemoDb')"); rs.Error != nil {
-			return nil,rs.Error
-		}
 		db.AutoMigrate(&models.People{})
     }
 	return db, err
