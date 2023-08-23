@@ -38,6 +38,21 @@ variable "gcp_pg_db_flag_value" {
   default = "on"
 }
 
+variable "db_name" {
+  type = string
+  default = "GoLearn"
+}
+
+variable "db_user" {
+  type = string
+  default = "postgres"
+}
+
+variable "db_password" {
+  type = string
+  default = "postgres"
+}
+
 ####################################
 # GCP provider variable definition #
 ####################################

@@ -97,7 +97,7 @@ jobs:
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v1
         with:
-          image: gcr.io/imposing-ratio-393502/go-test/first-app:latest
+          image: gcr.io/${PROJECT_ID}/${IMAGE_NAME}:${IMAGE_TAG}
           service: ${{ env.SERVICE_NAME }}
           region: us-central1
           platform: managed

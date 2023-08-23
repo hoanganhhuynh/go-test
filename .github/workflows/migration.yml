@@ -1,6 +1,10 @@
 name: Migration
 on: 
   workflow_dispatch:
+
+env:
+  DB_NAME: DemoDb
+  INSTANCE_NAME: pg-instance
 jobs:
   migration:
     permissions:
@@ -11,7 +15,7 @@ jobs:
     steps:
       - name: Create-db
         run: 
-          make create-db
+          gcloud sql databases create ${DB_NAME} --instance=${INSTANCE_NAME}
       - name: Migrate-db
         run: 
           make migrate-db
