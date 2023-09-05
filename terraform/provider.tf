@@ -13,8 +13,7 @@ terraform {
 }
 
 provider "google" {
-#   credentials = file(format("%s/%s/%s",path.module, "terraform", var.gcp_credentials))
-  credentials = file("deployment-account.json")
+  credentials = file("go-app-credentials.json")
   project     = var.project
   region      = var.gcp_region
 }

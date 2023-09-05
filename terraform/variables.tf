@@ -1,3 +1,16 @@
+####################################
+#   GO-APP variables definition  #
+####################################
+
+variable "go_app_name" {
+  type = string
+  default = "Go-App"
+}
+
+variable "go_app_project_id" {
+  type = string
+  default = "go-app-396907"
+}
 
 ####################################
 #   POSTGRES variables definition  #
@@ -5,7 +18,7 @@
 
 variable "gcp_pg_name" {
   type = string
-  default = "pg-instance"
+  default = "go-pg-instance"
 }
 
 variable "gcp_pg_name_timestamp" {
@@ -45,7 +58,7 @@ variable "db_name" {
 
 variable "db_user" {
   type = string
-  default = "postgres"
+  default = "go-postgres"
 }
 
 variable "db_password" {
